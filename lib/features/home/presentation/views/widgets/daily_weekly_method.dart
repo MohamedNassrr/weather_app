@@ -12,6 +12,7 @@ class _DailyWeeklyMethodState extends State<DailyWeeklyMethod> {
   final List<String> titles = const [
     'Daily',
     'Weekly'
+
   ];
 
   int activeIndex = 0;
@@ -20,7 +21,11 @@ class _DailyWeeklyMethodState extends State<DailyWeeklyMethod> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 42,
-      child: ListView.builder(itemBuilder: (context, index) {
+      child: ListView.builder(
+          itemCount: titles.length,
+          scrollDirection: Axis.horizontal,
+          physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: 5.5,
@@ -28,9 +33,15 @@ class _DailyWeeklyMethodState extends State<DailyWeeklyMethod> {
           child: GestureDetector(
             onTap: (){
               activeIndex = index;
-              setState(() {
-
-              });
+              if(index == 0){
+                return setState(() {
+                  print('daily');
+                });
+              }else{
+                setState(() {
+                  print('weekly');
+                });
+              }
             },
             child: DailyAndWeaklyButton(
               isActive:activeIndex == index,
@@ -38,11 +49,10 @@ class _DailyWeeklyMethodState extends State<DailyWeeklyMethod> {
             ),
           ),
         );
-      },
-        itemCount: titles.length,
-        scrollDirection: Axis.horizontal,
-        physics: const NeverScrollableScrollPhysics(),
+      }
       ),
     );
   }
 }
+
+

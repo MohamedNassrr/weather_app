@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/utils/app_style.dart';
-import 'package:weather_app/core/widgets/daily_weekly_button.dart';
+import 'package:weather_app/core/utils/assets_data.dart';
+import 'package:weather_app/features/home/presentation/views/widgets/daily_weather_list_view.dart';
 import 'package:weather_app/features/home/presentation/views/widgets/daily_weekly_list_item.dart';
 import 'package:weather_app/features/home/presentation/views/widgets/temp_details.dart';
 
@@ -10,6 +11,7 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
           child: TextButton(
@@ -20,15 +22,16 @@ class HomeViewBody extends StatelessWidget {
             ),
           ),
         ),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.location_on,
-              color: Colors.white54,
-              weight: 16,
+            Image.asset(
+              AssetsData.locationIcons,
             ),
-            Text(
+            const SizedBox(
+              width: 8,
+            ),
+            const Text(
               'Current Location',
               style: Styles.textStyle12,
             ),
@@ -38,7 +41,11 @@ class HomeViewBody extends StatelessWidget {
         const SizedBox(
           height: 32,
         ),
-        DailyWeeklyList(),
+        const DailyWeeklyList(),
+        const SizedBox(
+          height: 24,
+        ),
+        const DailyWeatherListView(),
       ],
     );
   }
